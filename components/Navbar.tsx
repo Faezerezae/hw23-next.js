@@ -5,12 +5,6 @@ import { SetStateAction, useState } from 'react';
 import { HiMenu, HiOutlineX } from "react-icons/hi";
 import Image from 'next/image';
 
-function classNames(...classes: string[]) {
-    return classes.filter(Boolean).join(' ')
-}
-
-console.log(classNames)
-
 export default function Navbar() {
     const [activeNavItem, setActiveNavItem] = useState('');
 
@@ -19,7 +13,7 @@ export default function Navbar() {
     };
 
     return (
-        <Disclosure as="nav" className="bg-white">
+        <Disclosure as="nav" className="">
 
             {({ open }) => (
                 <>
@@ -33,7 +27,7 @@ export default function Navbar() {
                                     height={200}
                                     width={200}
                                     alt="Path"
-                                    className="absolute  right-0 top-1"
+                                    className="absolute hidden sm:flex right-0 top-1"
                                 />
 
                                 <Image
@@ -42,19 +36,23 @@ export default function Navbar() {
                                     height={200}
                                     width={200}
                                     alt="Path"
-                                    className="absolute left-0 top-14"
+                                    className="hidden sm:flex absolute left-0 top-14"
                                 />
                                 <div className="flex-shrink-0 flex items-center">
-                                    <img
-                                        className="block lg:hidden h-10 w-auto"
-                                        src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                                        alt="Workflow"
-                                    />
-                                    <img
-                                        className="hidden lg:block h-10 w-auto"
-                                        src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                                        alt="Workflow"
-                                    />
+                                    <Link href={"/"}>
+                                        <img
+                                            className="block lg:hidden h-10 w-auto"
+                                            src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                                            alt="Workflow"
+                                        />
+                                    </Link>
+                                    <Link href={"/"}>
+                                        <img
+                                            className="hidden lg:block h-10 w-auto"
+                                            src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                                            alt="Workflow"
+                                        />
+                                    </Link>
                                 </div>
                                 <div className="hidden md:ml-32 lg:ml-72 xl:ml-96 sm:flex sm:space-x-8">
                                     <ul>
