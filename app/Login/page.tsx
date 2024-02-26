@@ -3,16 +3,16 @@ import Image from 'next/image';
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 
 import { TextInput } from "@/components/inputs/textInput";
-// import { getUserByCredentials } from "@/pocketbase/users";
 import { PrimaryContainedButton } from "@/components/buttons/contained-btns";
 import {
     loginFormSchema,
     loginFormType,
 } from "@/utils/validations/login-validation";
 import { classNames } from "@/utils/tools";
-import { useRouter } from "next/navigation";
+import { getUserByCredentials } from '@/pocketbase/users';
 
 export default function Login() {
     const [error, setError] = React.useState<string>("");
@@ -22,22 +22,22 @@ export default function Login() {
         resolver: zodResolver(loginFormSchema),
     });
 
-    const submitLoginForm = async (data: loginFormType) => {
+    const submitLoginForm =async (data: loginFormType) => {
+        console.log(data);
         if (loading) return;
         setLoading(true);
-        // const result = await getUserByCredentials(data.username, data.password);
-        // setError(result?.error || "");
-        // setLoading(false);
-        // if (result.data) {
-        //   router.push("/admin");
-        // } else {
-        //   router.push("/panel");
-        // }
+        const result = await getUserByCredentials(data.username, data.password);
+        setError(result?.error || "");
+        setLoading(false);
+        if (result.data) {
+          router.push("/admin");
+        } else {
+          router.push("/panel");
+        }
     };
 
     return (
-        <main className="w-full h-screen flex lg:flex-row flex-col-reverse justify-center items-center px-xs sm:px-0">
-
+        <main className="w-full h-screen flex md:flex-row flex-col-reverse justify-center items-center px-xs sm:px-0">
             <section className="shadow-card rounded-sm w-[366px] h-[450px] py-4 px-10 bg-white">
                 <div className="space-y-xs">
                     <p className="text-primary-700 text-3xl">Hello,</p>

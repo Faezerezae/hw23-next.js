@@ -3,11 +3,6 @@
 import React from "react";
 import { classNames } from "@/utils/tools";
 
-interface ITextInput extends React.InputHTMLAttributes<HTMLInputElement> {
-  labelTitle?: string;
-  error?: string;
-}
-
 export const TextInput: React.FC<ITextInput> = ({
   labelTitle,
   error,

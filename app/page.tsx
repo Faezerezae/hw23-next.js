@@ -5,7 +5,7 @@ import Link from "next/link"
 
 export default function Home() {
   return (
-    <div className="h-[932px] relative bg-gray-50">
+    <div className="h-[932px] relative">
       <Navbar />
       <div className="container mx-auto text-center grid gap-10 lg:gap-5 justify-center items-center">
         <h1 className="font-extrabold lg:text-[30px] xl:text-[50px] mt-20">Manage Your <span className="text-primary-700">Company Accounting</span></h1>
