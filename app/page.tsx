@@ -11,8 +11,8 @@ export default function Home() {
         <h1 className="font-extrabold lg:text-[30px] xl:text-[50px] mt-20">Manage Your <span className="text-primary-700">Company Accounting</span></h1>
         <p className="text-gray-500">Create your company, and manage all your accounting things on our platform.</p>
         <div className="flex gap-2 justify-center items-center m-4 text-sm">
-          <Link href={"/Login"} className="bg-primary-700 text-white py-2 px-4 rounded-md shadow">Login</Link>
-          <Link href={"/Signup"} className="text-primary-700 py-2 px-4 rounded-md shadow">Signup</Link>
+          <Link href={"/login"} className="bg-primary-700 text-white py-2 px-4 rounded-md shadow">Login</Link>
+          <Link href={"/signup"} className="text-primary-700 py-2 px-4 rounded-md shadow">Signup</Link>
         </div>
         <Image
           priority

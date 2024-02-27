@@ -1,3 +1,6 @@
+/**
+ * @type {import('@types/tailwindcss/tailwind-config').TailwindConfig}
+ */
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -5,6 +8,7 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./containers/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/flowbite-react/lib/**/*.{js,ts,jsx,tsx,mdx}"
   ],
   theme: {
     extend: {
@@ -50,6 +54,7 @@ const config: Config = {
         },
         danger: "#DC2626",
         primary: {
+          100:"#EDE9FE",
           400: "#A78BFA",
           700: "#6D28D9",
           800: "#5B21B6",
@@ -61,6 +66,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [require("@tailwindcss/forms"),require('flowbite/plugin')],
 };
 export default config;
