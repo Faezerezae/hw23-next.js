@@ -3,6 +3,8 @@
 import { removeUser } from "@/requests/users";
 import ModalDelete from "../ModalDelete";
 import ModalAdd from "../ModalAdd";
+import ModalUpdate from "../ModalUpdate";
+import { updateUsers } from "@/pocketbase/users";
 
 
 interface IUsersList {
@@ -15,6 +17,18 @@ export const UsersList: React.FC<IUsersList> = ({ users }) => {
     window.location.reload();
     window.location.reload();
   };
+
+  type AddFormType={
+    password:string;
+    username:string;
+    isAdmin?: false
+  }
+
+  const submitUpdateUserForm = async (data: AddFormType,id:string) => {
+    console.log(data);
+    const result:any = await updateUsers(id,data);
+    console.log(result);
+  }  
 
   return (
     <div className="px-4 sm:px-6 lg:px-8">
@@ -75,11 +89,7 @@ export const UsersList: React.FC<IUsersList> = ({ users }) => {
                       </td>
                       <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                         <ModalDelete onDelete={() => handDelete(user.id)} />
-                        <button
-                          className="inline-flex m-1 items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-primary-700 bg-primary-100 hover:bg-purple-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-700"
-                        >
-                          Edit Account
-                        </button>
+                        <ModalUpdate onUpdate={(data: AddFormType) => submitUpdateUserForm(data, user.id)} />                       
                       </td>
 
 

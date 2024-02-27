@@ -62,6 +62,12 @@ export const deleteUsers = async (userId: string): Promise<void> => {
   await client.collection("users").delete(userId);
 };
 
+
+export const updateUsers = async (userId: string,data: any): Promise<void> => {
+  const client = await getClient();
+  await client.collection("users").update(userId,data);
+};
+
 export const getUserByCredentials = async (
   username: string,
   password: string

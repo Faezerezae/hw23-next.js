@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { HiOutlineX } from 'react-icons/hi'
 import { TextInput } from './inputs/textInput'
@@ -8,9 +8,9 @@ import { loginFormSchema, loginFormType } from '@/utils/validations/login-valida
 import { zodResolver } from '@hookform/resolvers/zod'
 import React from 'react'
 import { PrimaryContainedButton } from './buttons/contained-btns'
-import { addUsers } from '@/pocketbase/users'
+import { addUsers, updateUsers } from '@/pocketbase/users'
 
-export default function ModalAdd() {
+export default function ModalUpdate({ onUpdate }:any) {
   const [open, setOpen] = useState(false)
   const [error, setError] = React.useState<string>("");
   const [loading, setLoading] = React.useState<boolean>(false);
@@ -18,41 +18,13 @@ export default function ModalAdd() {
     resolver: zodResolver(loginFormSchema),
   });
 
-
-  type AddFormType={
-    password:string;
-    username:string;
-    isAdmin?: false
-  }
-
-  const submitAddUserForm = async (data: AddFormType) => {
-    console.log(data);
-    if (loading) return;
-    setLoading(true);
-    try {
-      const result = await addUsers(data);
-      console.log(result);
-    } 
-    catch (error) {
-      console.error(error);
-      setError("An error occurred. Please try again."); 
-    }
-    finally {
-      setLoading(false);
-      setOpen(error ? true : false);
-      if (!error) {
-        reset();
-      }
-      window.location.reload();
-  };
-  }
   return (
     <>
       <button onClick={() => setOpen(true)}
         type="submit"
-        className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-      >
-        + New Accountant
+        className="inline-flex m-1 items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-primary-700 bg-primary-100 hover:bg-purple-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-700"
+        >
+        Edit Account
       </button>
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="fixed z-10 inset-0 overflow-y-auto" onClose={setOpen}>
@@ -95,13 +67,13 @@ export default function ModalAdd() {
                 <div className="sm:flex sm:items-start">
                   <div className="mt-3 text-start sm:mt-0 sm:ml-4 sm:text-left">
                     <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900">
-                      Add Accountant
+                    Edit Accountant
                     </Dialog.Title>
 
                   </div>
                 </div>
                 <div className="mt-2">
-                  <form onSubmit={handleSubmit(submitAddUserForm)} className="mt-lg">
+                  <form onSubmit={handleSubmit(onUpdate)} className="mt-lg">
                     <div className="space-y-md">
                       <Controller
                         name="username"
@@ -133,7 +105,7 @@ export default function ModalAdd() {
                     <div className="rounded-md overflow-hidden mt-xl">
                       <PrimaryContainedButton
                         type="submit"
-                        title={<p className="font-semibold text-white w-full">New Accountant</p>}
+                        title={<p className="font-semibold text-white w-full">Update</p>}
                         disabled={loading}
                       />
                     </div>
