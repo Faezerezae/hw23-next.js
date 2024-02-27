@@ -13,6 +13,7 @@ export const UsersList: React.FC<IUsersList> = ({ users }) => {
   const handDelete = (userId: string) => {
     removeUser(userId);
     window.location.reload();
+    window.location.reload();
   };
 
   return (

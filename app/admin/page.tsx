@@ -17,7 +17,7 @@ export default async function AdminPanel() {
     <main className="container mx-auto py-xl">
       <UsersList users={users?.items || []} />
       <nav
-        className="bg-white mx-10 py-3 flex items-center justify-start border-t-2 border-gray-300 gap-2 overflow-x-auto w-auto"
+        className=" mx-10 py-3 flex items-center justify-start border-t-2 border-gray-300 gap-2 overflow-x-auto w-auto"
         aria-label="Pagination"
       >
         <div className="flex">
