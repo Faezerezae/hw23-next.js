@@ -59,9 +59,9 @@ export default function ModalDelete({ onDelete }:any) {
                   Delete Accountant
                   </Dialog.Title>
                   <div className="mt-2">
-                    <h1 className='text-sm text-gray-800'>Are you sure you want to delete your account? </h1>
+                    <h1 className='text-sm text-gray-800'>Do you want to delete this account? </h1>
                     <p className="text-sm text-gray-400 mt-2">
-                    All of your data will be permanently removed from our servers forever. This action cannot be undone.
+                    All of this data will be permanently removed from our servers forever. This action cannot be undone.
                     </p>
                   </div>
                 </div>
